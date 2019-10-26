@@ -1,12 +1,3 @@
-<?php
-session_start();
-
-
-$_SESSION['correct'];
-$_SESSION['attempt'];
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,21 +8,48 @@ $_SESSION['attempt'];
 </head>
 <body>
     <h1>Math Exercises</h1>
-    <form action="calc.php" method="post">
+    <form action="calc.php" method="get">
         <input type="text" name="num1" placeholder="Number 1">
         <input type="text" name="num2" placeholder="Number 2">
-        <select name="operator" id="">
-            <option value="">None</option>
-            <option value="">Add</option>
-            <option value="">Subtract</option>
-            <option value="">Multiply</option>
-            <option value="">Divide</option>
+        <select name="operator">
+            <option>None</option>
+            <option>Add</option>
+            <option>Subtract</option>
+            <option>Multiply</option>
+            <option>Divide</option>
         </select>
         <br>
         <button type="submit" name="submit" value="submit">Calculate</button>
-
-
-
+     
     </form>
+    <p>The answer is: </p>
+    <?php
+    if (isset($_GET['submit'])) {
+        $result1 = $_GET['num1'];
+        $result2 = $_GET['num2'];
+        $operator = $_GET['operator'];
+        switch ($operator) {
+            case "None":
+                echo "Select an operator!";
+            break;
+            case "Add":
+                echo $result1 + $result2;
+            break;
+            case "Subtract":
+                echo $result1 - $result2;
+            break;
+            case "Multiply":
+                echo $result1 * $result2;
+            break;
+            case "Divide":
+                echo $result1 / $result2;
+            break;
+
+        }
+        
+
+    }
+?>
+    
 </body>
 </html>
