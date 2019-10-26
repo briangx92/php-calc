@@ -1,5 +1,7 @@
 <?php
-if (isset($_POST['range'])) {
+$range = isset($_POST['range']);
+$sub = isset($_POST['submit']);
+if ($range) {
     $x1 = $_POST['x1'];
     $x2 = $_POST['x2'];
     $y1 = $_POST['y1'];
@@ -8,18 +10,15 @@ if (isset($_POST['range'])) {
     $y_rand = rand((int)$y1,(int)$y2);
     $x = $x_rand;
     $y = $y_rand;
-    echo "{$x}<br>";
-    echo $y;
+    echo "Range has been submitted!";
 
 }
-
-
-$sub = isset($_POST['submit']);
 
 function calculate($sub) {
     if ($sub) {
     $result1 = $_POST['num1'];
     $result2 = $_POST['num2'];
+    $answer = $_POST['answer'];
     $operator = $_POST['operator'];
     switch ($operator) {
         case "Select":
@@ -37,7 +36,7 @@ function calculate($sub) {
         if ($operator == "/") {
             $total = $result1 / $result2;
         }
-        echo "What is {$result1} {$operator} {$result2}?";
+        echo "What is {$result1} {$operator} {$result2} and {$total}?";
     
 
     }
@@ -78,12 +77,15 @@ $calculate = calculate($sub);
             <input type="text" name="num1" value="<?php echo @$x; ?>" placeholder="Number 1">
             <br>
             <input type="text" name="num2" value="<?php echo @$y; ?>" placeholder="Number 2">
+            <br>
+            <input type="text" name="answer" placeholder="Enter Answer Here">
+
             <select name="operator">
                 <option>Select</option>
                 <option value="+">Add</option>
-                <option>Subtract</option>
-                <option>Multiply</option>
-                <option>Divide</option>
+                <option value="-">Subtract</option>
+                <option value="*">Multiply</option>
+                <option value="/">Divide</option>
             </select>
             <br>
             <button type="submit" name="submit" value="submit">Calculate</button>
