@@ -58,7 +58,8 @@ function calculate($submit) {
             echo "incorrect";
             $attempt++;
         }
-        echo $correct;
+        echo "correct: {$correct} <br>";
+        echo "attempt: {$attempt}";
     }
 }
 $calculate = calculate($submit);
@@ -120,5 +121,9 @@ $calculate = calculate($submit);
      
     </form>
 
+<?php 
+echo $correct; 
+print_r($_POST);
+?>
 </body>
 </html>
