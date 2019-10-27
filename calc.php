@@ -123,8 +123,10 @@ $calculate = calculate($submit);
     </form>
 
 <?php 
-echo $correct; 
-print_r($_POST);
+
+echo "{$correct} <br>";
+
+echo $attempt;
 ?>
 </body>
 </html>
