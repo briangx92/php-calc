@@ -1,8 +1,8 @@
 <?php
 // SESSION STUFF IS A W.I.P.
 session_start();
-$correct = $_SESSION['correct'];
-$attempt = $_SESSION['attempt'];
+$_SESSION['correct'];
+$_SESSION['attempt'];
 
 
 // POST DATA INTO VARIABLES
@@ -27,8 +27,8 @@ function calculate($submit) {
     if ($submit) {
     $result1 = $_POST['num1'];
     $result2 = $_POST['num2'];
-    $correct = (int)0;
-    $attempt = (int)0;
+    $_SESSION['correct'];
+    $_SESSION['attempt'];
     $answer = $_POST['answer'];
     
     $operator = $_POST['operator'];
@@ -50,17 +50,17 @@ function calculate($submit) {
         }
         if ($total == $answer) {
             echo "correct <br>";
-            $correct++;
-            $attempt++;
+            $_SESSION['correct']++;
+            $_SESSION['attempt']++;
             
             
         }
         elseif ($total != $answer) {
             echo "incorrect <br>";
-            $attempt++;
+            $_SESSION['attempt']++;
         }
-        echo "correct: {$correct} <br>";
-        echo "attempt: {$attempt}";
+        echo "correct: {$_SESSION['correct']} <br>";
+        echo "attempt: {$_SESSION['attempt']}";
     }
 }
 $calculate = calculate($submit);
@@ -124,9 +124,9 @@ $calculate = calculate($submit);
 
 <?php 
 
-echo "{$correct} <br>";
+echo "{$_SESSION['correct']} <br>";
 
-echo $attempt;
+echo $_SESSION['attempt'];
 ?>
 </body>
 </html>
