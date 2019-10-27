@@ -1,5 +1,5 @@
 <?php
-// SESSION STUFF IS A W.I.P.
+
 session_start();
 $_SESSION['correct'];
 $_SESSION['attempt'];
@@ -9,7 +9,7 @@ $_SESSION['attempt'];
 $range = isset($_POST['range']);
 $submit = isset($_POST['submit']);
 
-// $correct = (int)0;
+// IF STATEMENT FOR RANGE P
 if ($range) {
     $x1 = $_POST['x1'];
     $x2 = $_POST['x2'];
@@ -49,15 +49,18 @@ function calculate($submit) {
             $total = $result1 / $result2;
         }
         if ($total == $answer) {
-            echo "correct <br>";
+            echo "<h1>You got the correct answer!</h1> <br>";
             $_SESSION['correct']++;
             $_SESSION['attempt']++;
             
             
         }
         elseif ($total != $answer) {
-            echo "incorrect <br>";
+            echo "<h1>Try again!</h1> <br>";
             $_SESSION['attempt']++;
+        }
+        elseif ($answer == "") {
+            echo "Enter an answer.";
         }
         echo "correct: {$_SESSION['correct']} <br>";
         echo "attempt: {$_SESSION['attempt']}";
@@ -103,7 +106,7 @@ $calculate = calculate($submit);
             <br>
             <input type="text" name="num2" value="<?php echo @$y; ?>" placeholder="Number 2">
             <br>
-            <input type="text" name="answer" placeholder="Enter Answer Here">
+            <input type="text" name="answer" placeholder="Enter Answer Here" required>
 
             <select name="operator">
                 <option>Select</option>
@@ -121,12 +124,8 @@ $calculate = calculate($submit);
         
      
     </form>
-
-<?php 
-
-echo "{$_SESSION['correct']} <br>";
-
-echo $_SESSION['attempt'];
-?>
+    <?php 
+    
+    ?>
 </body>
 </html>
