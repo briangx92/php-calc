@@ -1,6 +1,15 @@
 <?php
+session_start();
+
+// SESSION STUFF IS A W.I.P.
+$correct = $_SESSION['correct'];
+$attempt = $_SESSION['attempt'];
+
+// POST DATA INTO VARIABLES
 $range = isset($_POST['range']);
 $sub = isset($_POST['submit']);
+
+
 if ($range) {
     $x1 = $_POST['x1'];
     $x2 = $_POST['x2'];
@@ -10,10 +19,10 @@ if ($range) {
     $y_rand = rand((int)$y1,(int)$y2);
     $x = $x_rand;
     $y = $y_rand;
-    echo "Range has been submitted!";
+    
 
 }
-
+// FUNCTION CALCULATES THE ANSWER
 function calculate($sub) {
     if ($sub) {
     $result1 = $_POST['num1'];
@@ -36,9 +45,12 @@ function calculate($sub) {
         if ($operator == "/") {
             $total = $result1 / $result2;
         }
-        echo "What is {$result1} {$operator} {$result2} and {$total}?";
-    
-
+        if ($total == $answer) {
+            echo "cool";
+        }
+        elseif ($total != $answer) {
+            echo "not cool";
+        }
     }
 }
 $calculate = calculate($sub);
