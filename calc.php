@@ -27,7 +27,8 @@ function calculate($submit) {
     if ($submit) {
     $result1 = $_POST['num1'];
     $result2 = $_POST['num2'];
-    $correct = 0;
+    $correct = (int)0;
+    $attempt = (int)0;
     $answer = $_POST['answer'];
     
     $operator = $_POST['operator'];
@@ -48,14 +49,14 @@ function calculate($submit) {
             $total = $result1 / $result2;
         }
         if ($total == $answer) {
-            echo "correct";
+            echo "correct <br>";
             $correct++;
             $attempt++;
             
             
         }
         elseif ($total != $answer) {
-            echo "incorrect";
+            echo "incorrect <br>";
             $attempt++;
         }
         echo "correct: {$correct} <br>";
