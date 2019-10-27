@@ -1,15 +1,15 @@
 <?php
-session_start();
-
 // SESSION STUFF IS A W.I.P.
+// session_start();
 $correct = $_SESSION['correct'];
 $attempt = $_SESSION['attempt'];
 
+
 // POST DATA INTO VARIABLES
 $range = isset($_POST['range']);
-$sub = isset($_POST['submit']);
+$submit = isset($_POST['submit']);
 
-
+// $correct = (int)0;
 if ($range) {
     $x1 = $_POST['x1'];
     $x2 = $_POST['x2'];
@@ -23,11 +23,13 @@ if ($range) {
 
 }
 // FUNCTION CALCULATES THE ANSWER
-function calculate($sub) {
-    if ($sub) {
+function calculate($submit) {
+    if ($submit) {
     $result1 = $_POST['num1'];
     $result2 = $_POST['num2'];
+    $correct = 0;
     $answer = $_POST['answer'];
+    
     $operator = $_POST['operator'];
     switch ($operator) {
         case "Select":
@@ -46,15 +48,20 @@ function calculate($sub) {
             $total = $result1 / $result2;
         }
         if ($total == $answer) {
-            echo "cool";
+            echo "correct";
+            $correct++;
+            $attempt++;
+            
+            
         }
         elseif ($total != $answer) {
-            echo "not cool";
+            echo "incorrect";
+            $attempt++;
         }
+        echo $correct;
     }
 }
-$calculate = calculate($sub);
-
+$calculate = calculate($submit);
 
 ?>
 
@@ -68,6 +75,10 @@ $calculate = calculate($sub);
 </head>
 <body>
     <h1>Math Exercises</h1>
+    <h2>Directions:</h2>
+    <p>1) Select a range of numbers to generate a random number.</p>
+    <p>2) Enter your answer and click submit.</p>
+    <p>3) You can also enter your own numbers too.</p>
     <form action="calc.php" method="POST">
         <!-- Range Form -->
         <fieldset>
@@ -101,6 +112,7 @@ $calculate = calculate($sub);
             </select>
             <br>
             <button type="submit" name="submit" value="submit">Calculate</button>
+        
             
 
         </fieldset>
