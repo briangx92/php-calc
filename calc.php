@@ -1,6 +1,6 @@
 <?php
 // SESSION STUFF IS A W.I.P.
-// session_start();
+session_start();
 $correct = $_SESSION['correct'];
 $attempt = $_SESSION['attempt'];
 
