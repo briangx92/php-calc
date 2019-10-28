@@ -1,5 +1,5 @@
 <?php
-
+// SESSION VARIABLES
 session_start();
 $_SESSION['correct'];
 $_SESSION['attempt'];
@@ -9,7 +9,7 @@ $_SESSION['attempt'];
 $range = isset($_POST['range']);
 $submit = isset($_POST['submit']);
 
-// IF STATEMENT FOR RANGE P
+// IF STATEMENT FOR RANGE
 if ($range) {
     $x1 = $_POST['x1'];
     $x2 = $_POST['x2'];
